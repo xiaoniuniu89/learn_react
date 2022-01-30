@@ -3,18 +3,20 @@ import Title from './componants/Title'
 import EventList from './componants/EventList'
 import Modal from './componants/Modal'
 import React, {useState} from 'react'
+import NewEventForm from './componants/NewEventForm';
 
 function App() {
 
   const [showEvents, setShowEvents] = useState(true)
   const [showModal, setShowModal] = useState(false)
-  const [events, setEvents] = useState([
-    {title: 'mario\'s birthday', id: 1},
-    {title: 'CC\'s test', id: 2},
-    {title: 'Isaacs\'s party', id: 3}
-  ])
+  const [events, setEvents] = useState([])
 
-  console.log(showEvents)
+ const addEvent = (event) => {
+   setEvents((prevEvents) => {
+    return [...prevEvents, event]
+   })
+   setShowModal(false)
+ }
 
   const handleClick = (id) => {
     setEvents((prevState) => {
@@ -26,9 +28,7 @@ function App() {
 
   const subtitle = " All the latest events in Yoshiland"
 
-  const handleClose = () => {
-    setShowModal(false)
-  }
+  
 
   console.log(showModal)
 
@@ -51,19 +51,11 @@ function App() {
 
     {!showModal && 
     <div>
-      <button onClick={() => setShowModal(true)}>Show Modal</button>
+      <button onClick={() => setShowModal(true)}>Add New Event</button>
     </div>}
 
-    {showModal && <Modal handleClose={handleClose}>
-      <h2>50% off Coupon Code!!</h2>
-      <p>This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.</p>
+    {showModal && <Modal >
+      <NewEventForm addEvent={addEvent} />
     </Modal>}
 
     </div>
