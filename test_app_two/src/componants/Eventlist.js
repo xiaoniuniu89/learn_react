@@ -9,7 +9,7 @@ export default function Eventlist({Button, products, handleButton}) {
               {products.map((p) => {
                 return (
 
-                    <div className='p-card' key={p.id} style={{border: '1px solid black', width: '80%', margin: '2em auto', padding: '2em'}}>
+                    <div className='p-card' key={p.id} style={{border: '1px solid black', width: '80%', maxWidth: '600px', margin: '2em auto', padding: '2em'}}>
                         <h2>{p.title}</h2>
                         <div className='flex-div' style={{display: 'flex',justifyContent: 'space-around'}}>
                             <div className='p-img'>
